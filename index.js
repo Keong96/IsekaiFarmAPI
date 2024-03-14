@@ -260,12 +260,19 @@ app.get('/farms', verifyToken, async (req, res) => { //get all farms info that b
   client.query(query, params)
   .then((farms) => {
 
+    let ownedFarm = [];
+
     if(farms.rows.length > 0)
     {
+      for(var i = 0; i < farms.rows.length; i++)
+      {
+        ownedFarm.push(farms.rows[i].id);
+      }
+
       const response = {
         status : true,
-        data: farms.rows,
-        message: "Error"
+        data: ownedFarm,
+        message: "Success"
       };
   
       return res.status(200).json(response);
