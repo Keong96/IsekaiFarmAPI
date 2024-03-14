@@ -297,8 +297,8 @@ app.get('/farms', verifyToken, async (req, res) => { //get all farms info that b
 
 app.get('/farm', verifyToken, async (req, res) => { //get specific farms info
 
-  let query = `SELECT * FROM farms WHERE uid = $1`;
-  let params = [req.user.userId];
+  let query = `SELECT * FROM farms WHERE id = $1`;
+  let params = [req.body.farmId];
   let plantSetting = await client.query("SELECT value FROM settings WHERE key = $1", ["plantSetting"]);
   
   client.query(query, params)
