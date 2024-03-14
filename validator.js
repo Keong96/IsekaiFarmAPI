@@ -6,6 +6,7 @@ function ValidateRegister(req)
   {
     errorMsg.email = req.t("enter_email_password_to_register");
     errorMsg.password = req.t("enter_email_password_to_register");
+    return errorMsg;
   }
 
   const emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
@@ -28,14 +29,9 @@ function ValidateRegister(req)
     errorMsg.password = req.t("wrong_password_format")
   }
 
-  if( typeof(req.body.nickname) == 'undefined')
+  if( typeof(req.body.username) == 'undefined')
   {
-    errorMsg.nickname = req.t("nickname_not_exist")
-  }
-
-  if( typeof(req.body.securityPassword) == 'undefined')
-  {
-    errorMsg.securityPassword = req.t("security_password_no_exist")
+    errorMsg.username = req.t("nickname_not_exist")
   }
 
   const response = {
